@@ -3,6 +3,7 @@
 import { useCreateUser } from "@/hooks/users/useCreateUser";
 import { uploadToCloudinary } from "@/services/image-upload";
 import { SubmitEventHandler, useRef, useState } from "react";
+import { toast } from "sonner";
 
 const useCreateUserForm = (close: () => void) => {
 
@@ -50,17 +51,17 @@ const useCreateUserForm = (close: () => void) => {
     e.preventDefault();
 
     if (!formData.name.trim()) {
-      alert("Name is required");
+      toast.error("Name is required");
       return;
     }
 
     if (formData.profileImage && !(formData.profileImage instanceof File)) {
-      alert("Invalid profile image");
+      toast.error("Invalid profile image");
       return;
     }
 
     if (formData.coverImage && !(formData.coverImage instanceof File)) {
-      alert("Invalid cover image");
+      toast.error("Invalid cover image");
       return;
     }
 
@@ -76,7 +77,7 @@ const useCreateUserForm = (close: () => void) => {
         coverImage: cover.url,
       });
   } catch (error) {
-
+    toast.error("Failed to create user");
     console.error("Error setting loading state:", error);
   }finally{
     setLoading(false);
@@ -89,6 +90,7 @@ const useCreateUserForm = (close: () => void) => {
     if (coverInputRef.current) {
       coverInputRef.current.value = "";
     }
+    toast.success("User created successfully!");
     close();
   }
 

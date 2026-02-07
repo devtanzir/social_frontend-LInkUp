@@ -7,12 +7,13 @@ import { User } from '@/lib/context'
 import { useUsers } from '@/hooks/users/useUsers'
 import UserHeader from './_components/user-header'
 import { Card } from '@/components/ui/card'
+import PageLoader from '@/components/shared/page-loader'
 
 export default function UsersPage() {
   const { data: users, isLoading, isError } = useUsers()
 
   if (isLoading) {
-    return <div className="text-center py-12">Loading users...</div>
+    return <PageLoader />;
   }
 
   if (isError) {
