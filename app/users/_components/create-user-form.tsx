@@ -1,16 +1,29 @@
-"use client"
+"use client";
 import { Button } from "@/components/ui/button";
 import { DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import useCreateUserForm from "../_hooks/useCreateUserForm";
 import ImageInputGroup from "./image-input-group";
+import DottedSeparator from "@/components/shared/dotted-separator";
+import { Loader } from "lucide-react";
 
 interface CreateUserFormProps {
   close: () => void;
 }
 const CreateUserForm = ({ close }: CreateUserFormProps) => {
-  const {coverInputRef, profileInputRef, formData, handleProfileChange, handleFormChange, handleRemoveImage, handleCoverChange, handleSubmit, loading} = useCreateUserForm(close);
+  const {
+    coverInputRef,
+    profileInputRef,
+    formData,
+    handleProfileChange,
+    handleFormChange,
+    handleRemoveImage,
+    handleCoverChange,
+    handleSubmit,
+    loading,
+  } = useCreateUserForm(close);
+
   return (
     <>
       <div>
@@ -38,26 +51,28 @@ const CreateUserForm = ({ close }: CreateUserFormProps) => {
           </div>
 
           <ImageInputGroup
-          name={"Profile Image"}
-          inputRef={profileInputRef as React.RefObject<HTMLInputElement>}
-          id={"profileImage"}
-          handleChange={handleProfileChange}
-          previewImage={formData.profileImage}
-          width={96}
-          height={96}
-          handleRemoveImage={handleRemoveImage}
+            name={"Profile Image"}
+            inputRef={profileInputRef as React.RefObject<HTMLInputElement>}
+            id={"profileImage"}
+            handleChange={handleProfileChange}
+            previewImage={formData.profileImage}
+            width={96}
+            height={96}
+            handleRemoveImage={handleRemoveImage}
           />
 
           <ImageInputGroup
-          name={"Cover Image"}
-          inputRef={coverInputRef as React.RefObject<HTMLInputElement>}
-          id={"coverImage"}
-          handleChange={handleCoverChange}
-          previewImage={formData.coverImage}
-          width={300}
-          height={128}
-          handleRemoveImage={handleRemoveImage}
+            name={"Cover Image"}
+            inputRef={coverInputRef as React.RefObject<HTMLInputElement>}
+            id={"coverImage"}
+            handleChange={handleCoverChange}
+            previewImage={formData.coverImage}
+            width={300}
+            height={128}
+            handleRemoveImage={handleRemoveImage}
           />
+
+          <DottedSeparator className="py-2" />
 
           <div className="flex gap-2 pt-4">
             <Button
@@ -69,7 +84,7 @@ const CreateUserForm = ({ close }: CreateUserFormProps) => {
               Cancel
             </Button>
             <Button type="submit" className="flex-1" disabled={loading}>
-              Create
+              {loading ? <Loader className='size-6 animate-spin text-muted-foreground'/> : "Create"}
             </Button>
           </div>
         </form>
