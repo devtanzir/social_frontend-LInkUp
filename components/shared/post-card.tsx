@@ -1,9 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import { Heart, MessageCircle, Share2 } from 'lucide-react'
-import { useApp } from '@/lib/context'
+
 import Link from 'next/link'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -15,10 +14,6 @@ interface PostCardProps {
 }
 
 export function PostCard({ post }: PostCardProps) {
-  const { users } = useApp()
-  const author = users.find((u: any) => u.id === post.userId)
-
-  if (!author) return null
 
   return (
     <Card className="overflow-hidden border-0 bg-card shadow-sm hover:shadow-md transition-shadow">
@@ -27,16 +22,16 @@ export function PostCard({ post }: PostCardProps) {
         <div className="flex items-center justify-between mb-4">
           <Link href={`/users/${post.userId}`} className="flex items-center gap-3 hover:opacity-80 transition-opacity flex-1">
             <Avatar className="h-10 w-10 sm:h-12 sm:w-12">
-              <AvatarImage src={author.profileImage || "/placeholder.svg"} alt={author.name} />
-              <AvatarFallback>{author.name.charAt(0)}</AvatarFallback>
+              <AvatarImage className='object-cover' src={post?.user?.profileImage || "/placeholder.svg"} alt={post?.user?.name || "User"} />
+              <AvatarFallback>{post.user?.name.charAt(0) || "U"}</AvatarFallback>
             </Avatar>
             <div>
-              <p className="font-semibold text-foreground text-sm sm:text-base">{author.name}</p>
-              <p className="text-xs sm:text-sm text-muted-foreground">{post.timestamp}</p>
+              <p className="font-semibold text-foreground text-sm sm:text-base">{post.user?.name || "Unknown User"}</p>
+              <p className="text-xs sm:text-sm text-muted-foreground">{post.createdAt}</p>
             </div>
           </Link>
           <button className="text-muted-foreground hover:text-foreground transition-colors">
-            <span className="text-xl">•••</span>
+            <span className="text-xl cursor-pointer">•••</span>
           </button>
         </div>
 
@@ -44,10 +39,10 @@ export function PostCard({ post }: PostCardProps) {
         <p className="text-sm sm:text-base text-foreground mb-4 leading-relaxed">{post.content}</p>
 
         {/* Image */}
-        {post.imageUrl && (
+        {post.image && (
           <div className="relative w-full aspect-video mb-4 rounded-lg overflow-hidden bg-muted">
             <img
-              src={post.imageUrl || "/placeholder.svg"}
+              src={post.image || "/placeholder.svg"}
               alt="Post content"
               className="w-full h-full object-cover"
             />
@@ -56,8 +51,8 @@ export function PostCard({ post }: PostCardProps) {
 
         {/* Stats */}
         <div className="flex items-center justify-between text-xs sm:text-sm text-muted-foreground px-2 py-3 border-t border-b border-border mb-3">
-          <span>{post.likes} likes</span>
-          <span>{post.comments} comments</span>
+          <span>0 likes</span>
+          <span>0 comments</span>
         </div>
 
         {/* Actions */}

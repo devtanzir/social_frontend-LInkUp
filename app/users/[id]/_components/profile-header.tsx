@@ -1,25 +1,26 @@
-/* eslint-disable @next/next/no-img-element */
 'use client'
 
 import { Card } from '@/components/ui/card'
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
-import { useApp, type User } from '@/lib/context'
+import { type User } from '@/lib/context'
+import Image from 'next/image'
 
 interface ProfileHeaderProps {
   user: User
+  total?: number
 }
 
-export function ProfileHeader({ user }: ProfileHeaderProps) {
-  const { posts } = useApp()
-  const userPosts = posts.filter(p => p.userId === user.id)
+export function ProfileHeader({ user, total }: ProfileHeaderProps) {
 
   return (
-    <Card className="overflow-hidden border-0 bg-card shadow-sm mb-6">
+    <Card className="overflow-hidden border-0 bg-card shadow-sm mb-6 pt-0 rounded-t-none">
       {/* Cover Image */}
       <div className="relative w-full h-40 sm:h-48 bg-muted overflow-hidden">
-        <img
+        <Image
           src={user.coverImage || "/placeholder.svg"}
           alt="Cover"
+          width={1200}
+          height={480}
           className="w-full h-full object-cover"
         />
       </div>
@@ -29,7 +30,7 @@ export function ProfileHeader({ user }: ProfileHeaderProps) {
         {/* Avatar and Header */}
         <div className="flex flex-col sm:flex-row sm:items-end gap-4 -mt-16 mb-4 relative z-10">
           <Avatar className="h-24 w-24 sm:h-32 sm:w-32 border-4 border-card shadow-lg shrink-0">
-            <AvatarImage src={user.profileImage || "/placeholder.svg"} alt={user.name} />
+            <AvatarImage className=' object-cover' src={user.profileImage || "/placeholder.svg"} alt={user.name} />
             <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
           </Avatar>
 
@@ -39,8 +40,7 @@ export function ProfileHeader({ user }: ProfileHeaderProps) {
             {/* Stats */}
             <div className="flex gap-6 text-sm">
               <div>
-                <p className="font-semibold text-foreground">{userPosts.length}</p>
-                <p className="text-muted-foreground">Posts</p>
+                <p className="font-semibold text-foreground">{total} . <span className="text-muted-foreground">Posts</span></p>
               </div>
             </div>
           </div>
