@@ -1,10 +1,10 @@
 import { User } from "./user"
 
 export type Post = {
-  id: string
-  userId: string
+  id?: string
+  userId: number
   content: string
   image?: string
-  createdAt: string
+  createdAt?: string
   user?: User
 }

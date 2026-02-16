@@ -5,7 +5,7 @@ import PageLoader from '@/components/shared/page-loader'
 import Header from '@/app/_components/header'
 import { ProfileHeader } from '@/app/users/[id]/_components/profile-header'
 import { useGetPostByUserId } from '@/hooks/users/useGetPostByUserId'
-import { PostCard } from '@/components/shared/post-card'
+import { PostCard } from '@/app/_posts/_components/post-card'
 import { Post } from '@/lib/context'
 
 

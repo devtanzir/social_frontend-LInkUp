@@ -1,8 +1,8 @@
 "use client"
-import { PostCard } from "@/components/shared/post-card";
+import PageLoader from "@/components/shared/page-loader";
+import { PostCard } from "@/app/_posts/_components/post-card";
 import { useGetPosts } from "@/hooks/posts/useGetPosts";
 import { Post } from "@/lib/context";
-import { Loader } from "lucide-react";
 import { notFound } from 'next/navigation'
 
 const NewsFeed = () => {
@@ -13,7 +13,7 @@ const NewsFeed = () => {
             notFound()
         }
         if (isPostsLoading) {
-            return <Loader className='size-6 animate-spin text-muted-foreground' />
+            return <PageLoader />
         }
 
     
