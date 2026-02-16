@@ -4,10 +4,10 @@ import PageLoader from "@/components/shared/page-loader";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
 import { useUsers } from "@/hooks/users/useUsers";
-import { User } from "@/lib/context";
 import Link from "next/link";
 import { toast } from "sonner";
 import CreateUser from "./create-user";
+import { User } from "@/types/user";
 
 const UserList = () => {
   const { data: users, isLoading, isError } = useUsers();
@@ -21,7 +21,7 @@ const UserList = () => {
   }
   return (
     <>
-      {users?.length > 0 ? (
+      {users && users?.length > 0 ? (
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3.5 sm:gap-4">
           {users.map((user: User) => (
             <Link

@@ -5,13 +5,13 @@ export interface SelectUserProps {
   formData: {
     selectedUserId: string;
     content: string;
-    image: File | null;
+    image: string | File | null;
   };
   setFormData: React.Dispatch<
     React.SetStateAction<{
       selectedUserId: string;
       content: string;
-      image: File | null;
+      image: string | File | null;
     }>
   >;
 }

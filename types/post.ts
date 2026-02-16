@@ -9,7 +9,7 @@ export interface Post {
     profileImage?: string
   }
   createdAt: string
-  updatedAt: string
+  updatedAt?: string
 }
 
 
@@ -19,4 +19,4 @@ export interface CreatePostDto {
   userId: number
 }
 
-export type UpdatePostDto = Partial<Pick<Post, "content" | "image">>
+export type UpdatePostDto = Partial<Pick<Post, "content" | "image" | "userId">>

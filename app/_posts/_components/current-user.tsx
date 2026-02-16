@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { User } from "@/types/user";
 
-const CurrentUser = ({ currentUser }: { currentUser: User }) => {
+const CurrentUser = ({ currentUser }: { currentUser: User | undefined }) => {
   if (!currentUser) return null;
   return (
     <>

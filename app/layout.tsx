@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import QueryProvider from "@/providers/QueryProviders";
 import { Toaster } from "@/components/ui/sonner";
+import NextTopLoader from "nextjs-toploader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,13 +16,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
- title: 'LinkUp - Social Network',
-  description: 'Connect with friends and share your moments on LinkUp',
-  generator: 'v0.app',
+  title: "LinkUp - Social Network",
+  description: "Connect with friends and share your moments on LinkUp",
+  generator: "v0.app",
   icons: {
     icon: [
       {
-        url: '/favicon.svg'
+        url: "/favicon.svg",
       },
     ],
   },
@@ -35,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-                <script
+        <script
           dangerouslySetInnerHTML={{
             __html: `
               try {
@@ -58,11 +59,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <NextTopLoader color="#6366f1" height={3} showSpinner={false} />
         <QueryProvider>
           {children}
           <Toaster position="bottom-right" />
         </QueryProvider>
-        
       </body>
     </html>
   );

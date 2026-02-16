@@ -1,27 +1,30 @@
-'use client'
-import { useParams, notFound } from 'next/navigation'
-import { useSingleUser } from '@/hooks/users/useSingleUser'
-import PageLoader from '@/components/shared/page-loader'
-import Header from '@/app/_components/header'
-import { ProfileHeader } from '@/app/users/[id]/_components/profile-header'
-import { useGetPostByUserId } from '@/hooks/users/useGetPostByUserId'
-import { PostCard } from '@/app/_posts/_components/post-card'
-import { Post } from '@/lib/context'
-
+"use client";
+import { useParams, notFound } from "next/navigation";
+import { useSingleUser } from "@/hooks/users/useSingleUser";
+import PageLoader from "@/components/shared/page-loader";
+import Header from "@/app/_components/header";
+import { ProfileHeader } from "./_components/profile-header";
+import { useGetPostByUserId } from "@/hooks/users/useGetPostByUserId";
+import { PostCard } from "@/app/_posts/_components/post-card";
+import { Post } from "@/types/post";
 
 export default function UserProfilePage() {
-  const params = useParams()
-  const id = params.id as string
+  const params = useParams();
+  const id = params.id as string;
 
-  const { data: user, isLoading, isError } = useSingleUser(+id)
-  const { data: userPosts, isLoading: isPostsLoading, isError: isPostsError } = useGetPostByUserId(+id)
+  const { data: user, isLoading, isError } = useSingleUser(+id);
+  const {
+    data: userPosts,
+    isLoading: isPostsLoading,
+    isError: isPostsError,
+  } = useGetPostByUserId(+id);
 
   if (isError || isPostsError) {
-    notFound()
+    notFound();
   }
 
   if (isLoading || isPostsLoading) {
-    return <PageLoader />
+    return <PageLoader />;
   }
 
   return (
@@ -38,7 +41,9 @@ export default function UserProfilePage() {
         {userPosts?.length > 0 ? (
           <div className="space-y-6">
             <div className="px-2">
-              <h2 className="text-lg font-semibold text-foreground mb-4">Posts</h2>
+              <h2 className="text-lg font-semibold text-foreground mb-4">
+                Posts
+              </h2>
             </div>
             {userPosts.map((post: Post) => (
               <PostCard key={post.id} post={post} />
@@ -51,5 +56,5 @@ export default function UserProfilePage() {
         )}
       </div>
     </main>
-  )
+  );
 }

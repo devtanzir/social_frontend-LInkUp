@@ -1,40 +1,57 @@
-import { Heart, MessageCircle, Share2 } from 'lucide-react'
+import { Heart, MessageCircle, Share2 } from "lucide-react";
 
-import Link from 'next/link'
-import { Card } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
-import { Post } from '@/lib/context'
-import Image from 'next/image'
+import Link from "next/link";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+// import { Post } from '@/lib/context'
+import Image from "next/image";
+import { timeAgo } from "@/lib/utils";
+import PostOptions from "./post-options";
+import { Post } from "@/types/post";
 
 interface PostCardProps {
-  post: Post
+  post: Post;
 }
 
 export function PostCard({ post }: PostCardProps) {
-
   return (
     <Card className="overflow-hidden border-0 bg-card shadow-sm hover:shadow-md transition-shadow">
       <div className="p-4 sm:p-6">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
-          <Link href={`/users/${post.userId}`} className="flex items-center gap-3 hover:opacity-80 transition-opacity flex-1">
+          <Link
+            href={`/users/${post.userId}`}
+            className="flex items-center gap-3 hover:opacity-80 transition-opacity flex-1"
+          >
             <Avatar className="h-10 w-10 sm:h-12 sm:w-12">
-              <AvatarImage className='object-cover' src={post?.user?.profileImage || "/placeholder.svg"} alt={post?.user?.name || "User"} />
-              <AvatarFallback>{post.user?.name.charAt(0) || "U"}</AvatarFallback>
+              <AvatarImage
+                className="object-cover"
+                src={post?.user?.profileImage || "/placeholder.svg"}
+                alt={post?.user?.name || "User"}
+              />
+              <AvatarFallback>
+                {post.user?.name.charAt(0) || "U"}
+              </AvatarFallback>
             </Avatar>
             <div>
-              <p className="font-semibold text-foreground text-sm sm:text-base">{post.user?.name || "Unknown User"}</p>
-              <p className="text-xs sm:text-sm text-muted-foreground">{post.createdAt}</p>
+              <p className="font-semibold text-foreground text-sm sm:text-base">
+                {post.user?.name || "Unknown User"}
+              </p>
+              <p className="text-xs sm:text-sm text-muted-foreground">
+                {timeAgo(post.createdAt)}
+              </p>
             </div>
           </Link>
-          <button className="text-muted-foreground hover:text-foreground transition-colors">
-            <span className="text-xl cursor-pointer">•••</span>
+          <button className="select-none text-muted-foreground hover:text-foreground transition-colors">
+            <PostOptions post={post} />
           </button>
         </div>
 
         {/* Content */}
-        <p className="text-sm sm:text-base text-foreground mb-4 leading-relaxed">{post.content}</p>
+        <p className="text-sm sm:text-base text-foreground mb-4 leading-relaxed">
+          {post.content}
+        </p>
 
         {/* Image */}
         {post.image && (
@@ -84,5 +101,5 @@ export function PostCard({ post }: PostCardProps) {
         </div>
       </div>
     </Card>
-  )
+  );
 }
