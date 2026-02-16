@@ -1,13 +1,11 @@
 import { postService } from "@/services/post-service";
-import { CreatePostDto } from "@/types/post";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-
-export const useCreatePost = () => {
+export const useDeletePost = () => {
   const qc = useQueryClient();
 
   return useMutation({
-    mutationFn: (payload: CreatePostDto) => postService.create(payload),
+    mutationFn: (id: number) => postService.delete(id),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["posts"] });
     },

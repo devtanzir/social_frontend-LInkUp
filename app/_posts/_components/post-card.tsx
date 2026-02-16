@@ -1,6 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-'use client'
-
 import { Heart, MessageCircle, Share2 } from 'lucide-react'
 
 import Link from 'next/link'
@@ -8,6 +5,7 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { Post } from '@/lib/context'
+import Image from 'next/image'
 
 interface PostCardProps {
   post: Post
@@ -40,10 +38,12 @@ export function PostCard({ post }: PostCardProps) {
 
         {/* Image */}
         {post.image && (
-          <div className="relative w-full aspect-video mb-4 rounded-lg overflow-hidden bg-muted">
-            <img
+          <div className="relative w-full aspect-auto mb-4 rounded-lg overflow-hidden bg-muted">
+            <Image
               src={post.image || "/placeholder.svg"}
               alt="Post content"
+              width={600}
+              height={1000}
               className="w-full h-full object-cover"
             />
           </div>

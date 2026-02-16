@@ -5,8 +5,9 @@ import { User } from "@/types/user";
 import { SubmitEventHandler, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
-const usePostForm = (close: () => void) => {
-  const { data: users, isLoading, isError } = useUsers();
+const usePostForm = ( close : () => void) => {
+
+      const { data: users, isLoading, isError } = useUsers();
   const { mutate, isPending } = useCreatePost();
 
   const [formData, setFormData] = useState({
@@ -87,19 +88,19 @@ const usePostForm = (close: () => void) => {
     (u: User) => String(u.id) === formData.selectedUserId,
   );
 
-  return {
-    formData,
-    setFormData,
-    handleImageChange,
-    handleRemoveImage,
-    handleSubmit,
-    imageInputRef,
-    currentUser,
-    users,
-    loading,
-    isPending,
-    isLoading,
-  };
+    return {
+      formData,
+      setFormData,
+      handleImageChange,
+      handleRemoveImage,
+      handleSubmit,
+      imageInputRef,
+      currentUser,
+      users,
+      loading,
+      isPending,
+      isLoading,
+    };
 };
 
 export default usePostForm;

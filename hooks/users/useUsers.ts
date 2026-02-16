@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { getUsers } from "@/services/user-service";
+import { userService } from "@/services/user-service";
 
 export const useUsers = () => {
   return useQuery({
     queryKey: ["users"],
-    queryFn: getUsers,
+    queryFn: userService.getAll,
     staleTime: 5 * 60 * 1000, // 5 minutes
     retry: 2,
   });
