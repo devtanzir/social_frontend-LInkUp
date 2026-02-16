@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-// import { Post } from '@/lib/context'
 import Image from "next/image";
 import { timeAgo } from "@/lib/utils";
 import PostOptions from "./post-options";

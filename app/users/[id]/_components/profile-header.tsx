@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import Image from "next/image";
 import { User } from "@/types/user";
+import UpdateProfile from "./update-profile";
 
 interface ProfileHeaderProps {
   user: User | undefined;
@@ -47,10 +48,11 @@ export function ProfileHeader({ user, total }: ProfileHeaderProps) {
 
             {/* Stats */}
             <div className="flex gap-6 text-sm">
-              <div>
+              <div className="flex items-center justify-between w-full gap-2">
                 <p className="font-semibold text-foreground">
                   {total} . <span className="text-muted-foreground">Posts</span>
                 </p>
+                <UpdateProfile user={user} />
               </div>
             </div>
           </div>

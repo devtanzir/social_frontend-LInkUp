@@ -8,6 +8,7 @@ export const useDeleteUser = () => {
     mutationFn: (id: number) => userService.delete(id),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["users"] });
+      qc.invalidateQueries({ queryKey: ["posts"] });
     },
   });
 };

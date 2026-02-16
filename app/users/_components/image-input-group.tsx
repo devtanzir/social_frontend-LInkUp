@@ -32,7 +32,6 @@ const ImageInputGroup = ({name, inputRef, id, handleChange, previewImage, width,
                 accept="image/*"
                 onChange={handleChange}
                 className="cursor-pointer"
-                required
               />
             </div>
             {previewImage && (
