@@ -1,36 +1,153 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Social Media Backend & Frontend (Assignment Project)
 
-## Getting Started
+<div align="center">
+  <br />
+      <img src="public/readme/Linkup-banner.png" alt="Project Banner">
+  <br />
+</div>
 
-First, run the development server:
+A full-stack social media mini application built as an assignment project.
+
+This project demonstrates CRUD operations, relational database design, REST API development, and frontend state management using modern tools.
+
+---
+
+## Live Project Documentation
+
+- **Notion Documentation:** [Notion](https://darkened-energy-045.notion.site/Ashraful-sir-task-320323c8d1414609b8cfe1ecb4993d45)
+
+---
+
+## Tech Stack
+
+### Backend
+- NestJS
+- Prisma ORM
+- MySQL (Local)
+- REST API
+- Cascade delete relationship
+
+### Frontend
+- NextJS
+- TypeScript
+- React Query (TanStack Query)
+- ShadCn/UI
+- Axios
+- Tailwind CSS
+
+---
+
+## Database Design
+
+### User Model
+- id
+- name
+- profileImage
+- coverImage
+- createdAt
+
+### Post Model
+- id
+- content
+- image
+- userId
+- createdAt
+
+### Relationship
+- One User → Many Posts
+- Cascade delete enabled (Deleting a user deletes related posts)
+
+---
+
+## Features
+
+### User
+- Create user
+- Edit user
+- Delete user
+- View user list
+
+### Post
+- Create post
+- Edit post
+- Delete post
+- Filter posts by user
+
+### Functional Highlights
+- React Query for server state management
+- Optimized API structure
+- Proper error handling
+- Clean modular architecture
+- Relational DB integrity with cascade delete
+
+---
+
+## Setup Instructions
+
+### 1. Clone the Repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <https://github.com/devtanzir/social_backend-ashraful-sir-task>
+```
+### 2. Backend Setup
+
+```bash
+cd backend
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Create .env file:
+```bash
+DATABASE_URL="mysql://root:password@localhost:3306/social_backend_v2"
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Generate Prisma:
+```bash
+pnpm db:generate
+```
+Run migrations:
+```bash
+npx prisma migrate dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Start server:
+```bash
+npm run start:dev
+```
 
-## Learn More
+### 3. Frontend Setup
+```bash
+git clone <https://github.com/devtanzir/social_frontend-LInkUp>
 
-To learn more about Next.js, take a look at the following resources:
+cd frontend
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+npm install
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+npm run dev
+```
 
-## Deploy on Vercel
+## Screenshots
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![User List](public/readme/user-list.png)
+![Single User Page](public/readme/single-userpage.png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Architecture Approach
+
+- Planned in Notion before implementation
+- Structured module-based backend
+- Custom hooks for API logic separation
+- Reusable components
+- Clean separation of concerns
+
+## Learning Outcomes
+
+- Full CRUD implementation
+- Database relation handling
+- Cascade delete implementation
+- API & frontend integration
+- Handling async state with React Query
+- Migration management in Prisma
+
+## Author
+
+Developed as part of an assignment task.
