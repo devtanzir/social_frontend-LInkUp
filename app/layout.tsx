@@ -16,15 +16,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LinkUp - Social Network",
+  title: {
+    default: "LinkUp",
+    template: "%s | LinkUp",
+  },
   description: "Connect with friends and share your moments on LinkUp",
-  generator: "v0.app",
+  applicationName: "LinkUp",
+  authors: [{ name: "Tanzir Ibne Ali" }],
+  keywords: ["social media", "LinkUp", "Next.js", "NestJS"],
   icons: {
-    icon: [
-      {
-        url: "/favicon.svg",
-      },
-    ],
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
   },
 };
 
