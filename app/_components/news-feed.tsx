@@ -2,7 +2,7 @@
 import PageLoader from "@/components/shared/page-loader";
 import { PostCard } from "@/app/_posts/_components/post-card";
 import { useGetPosts } from "@/hooks/posts/useGetPosts";
-import { Post } from "@/lib/context";
+import { Post } from "@/types/post";
 import { notFound } from 'next/navigation'
 
 const NewsFeed = () => {

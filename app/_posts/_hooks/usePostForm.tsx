@@ -13,7 +13,7 @@ const usePostForm = ( close : () => void) => {
   const [formData, setFormData] = useState({
     selectedUserId: "",
     content: "",
-    image: null as File | null,
+    image:  null as string | File | null,
   });
   const imageInputRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState(false);
@@ -41,7 +41,7 @@ const usePostForm = ( close : () => void) => {
       setLoading(true);
       let imageUrl = "";
 
-      if (formData.image) {
+      if (formData.image && formData.image instanceof File) {
         const postImage = await uploadToCloudinary(formData.image);
         imageUrl = postImage.url;
       }
